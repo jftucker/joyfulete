@@ -15,7 +15,6 @@ const NavBar = () => {
           <NavLink to="/weeks">Weeks</NavLink>
           <NavLink to="/fitness">Fitness</NavLink>
           <NavLink to="/calendar">Calendar</NavLink>
-          <NavLink to="/workouts">Workouts</NavLink>
         </Nav>
         <Nav>
           <NavLink to="/login">Login</NavLink>
