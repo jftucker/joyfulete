@@ -15,6 +15,7 @@ django-rest-auth = "*"
 Pillow = "*"
 django-cors-headers = "*"
 gevent = "*"
+django-livesync = "*"
 
 [dev-packages]
 pylint = "*"

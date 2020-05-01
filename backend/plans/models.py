@@ -25,7 +25,7 @@ class MacroPlan(models.Model):
 class WeekType(models.Model):
     name = models.CharField(max_length=50)
     macroPlan = models.ForeignKey(
-        MacroPlan, on_delete=models.PROTECT, related_name='weeksFramework', blank=True, null=True)
+        MacroPlan, on_delete=models.PROTECT, related_name='weekTypes', blank=True, null=True)
     numStrength = models.IntegerField(blank=True, null=True)
     numActiveRecovery = models.IntegerField(blank=True, null=True)
     numRecovery = models.IntegerField(blank=True, null=True)

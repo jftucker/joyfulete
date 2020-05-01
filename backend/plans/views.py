@@ -23,6 +23,7 @@ class WeekDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Week.objects.all()
     serializer_class = WeekSerializer
 
+
 class PlanList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
@@ -31,6 +32,7 @@ class PlanList(generics.ListCreateAPIView):
 class PlanDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
+
 
 class MacroPlanList(generics.ListCreateAPIView):
     queryset = MacroPlan.objects.all()
