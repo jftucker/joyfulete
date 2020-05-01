@@ -3,9 +3,9 @@ import { ItemTypes } from "../utils/Constants";
 import { useDrag } from "react-dnd";
 import Card from "react-bootstrap/Card";
 
-function Workout({ id, zone, title }) {
+function Workout({ id, zone, title, dayId }) {
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.WORKOUT, id: id, zone: zone, title: title },
+    item: { type: ItemTypes.WORKOUT, id, zone, title, dayId },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),

@@ -6,10 +6,33 @@ import zoneStyle from "../utils/zoneStyle";
 import dayOfWeek from "../utils/dayOfWeek";
 import { ItemTypes } from "../utils/Constants";
 
-function WorkoutCardContainer({ id, date, workouts }) {
+function WorkoutCardContainer({ id, date, workouts, week, setWeek }) {
+  const onDrop = (props) => {
+    if (props.dayId !== id) {
+      const newWeek = { ...week };
+      const toDay = newWeek.days.filter((item) => item.id === id);
+      const fromDay = newWeek.days.filter((item) => item.id === props.dayId);
+      const newDays = newWeek.days.filter(
+        (item) => item.id !== props.dayId && item.id !== id
+      );
+      const workout = fromDay[0].workouts.filter(
+        (workout) => workout.id === props.id
+      )[0];
+      fromDay[0].workouts = fromDay[0].workouts.filter(
+        (workout) => workout.id !== props.id
+      );
+      toDay[0].workouts = [...toDay[0].workouts, workout];
+
+      newWeek.days = [...newDays, toDay[0], fromDay[0]].sort((a, b) =>
+        a.date > b.date ? 1 : -1
+      );
+
+      setWeek(newWeek);
+    }
+  };
   const [{ isOver }, drop] = useDrop({
     accept: ItemTypes.WORKOUT,
-    drop: (props) => console.log(props.title + " got dropped into " + id),
+    drop: onDrop,
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
@@ -20,7 +43,7 @@ function WorkoutCardContainer({ id, date, workouts }) {
       <Card
         ref={drop}
         key={id}
-        className="text-bold"
+        className="text-bold mb-3"
         text="dark"
         variant="top"
         border="dark"
@@ -30,8 +53,14 @@ function WorkoutCardContainer({ id, date, workouts }) {
           <p>{dayOfWeek(date)}</p>
           <p>{date}</p>
         </Card.Header>
-        {workouts.map(({ id, zone, title }) => (
-          <Workout key={id} id={id} zone={zoneStyle(zone)} title={title} />
+        {workouts.map(({ id: workoutId, zone, title }) => (
+          <Workout
+            key={workoutId}
+            id={workoutId}
+            zone={zoneStyle(zone)}
+            title={title}
+            dayId={id}
+          />
         ))}
       </Card>
     </Fragment>
