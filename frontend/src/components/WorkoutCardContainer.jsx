@@ -5,25 +5,25 @@ import Card from "react-bootstrap/Card";
 import zoneStyle from "../utils/zoneStyle";
 import dayOfWeek from "../utils/dayOfWeek";
 import { ItemTypes } from "../utils/Constants";
+import _ from "lodash";
 
 function WorkoutCardContainer({ id, date, workouts, week, setWeek }) {
   const onDrop = (props) => {
     if (props.dayId !== id) {
       const newWeek = { ...week };
-      const toDay = newWeek.days.filter((item) => item.id === id);
-      const fromDay = newWeek.days.filter((item) => item.id === props.dayId);
+      const toDay = _.find(newWeek.days, (obj) => obj.id === id);
+      const fromDay = _.find(newWeek.days, (obj) => obj.id === props.dayId);
       const newDays = newWeek.days.filter(
         (item) => item.id !== props.dayId && item.id !== id
       );
-      const workout = fromDay[0].workouts.filter(
-        (workout) => workout.id === props.id
-      )[0];
-      fromDay[0].workouts = fromDay[0].workouts.filter(
+      const workout = _.find(fromDay.workouts, (obj) => obj.id === props.id);
+
+      fromDay.workouts = fromDay.workouts.filter(
         (workout) => workout.id !== props.id
       );
-      toDay[0].workouts = [...toDay[0].workouts, workout];
+      toDay.workouts = [...toDay.workouts, workout];
 
-      newWeek.days = [...newDays, toDay[0], fromDay[0]].sort((a, b) =>
+      newWeek.days = [...newDays, toDay, fromDay].sort((a, b) =>
         a.date > b.date ? 1 : -1
       );
 

@@ -16,7 +16,9 @@ const Weeks = () => {
 
   return (
     <Fragment>
-      {weeks ? weeks.map((week) => <Week id={week.id}></Week>) : ""}
+      {weeks
+        ? weeks.map((week) => <Week key={week.id} id={week.id}></Week>)
+        : ""}
     </Fragment>
   );
 };

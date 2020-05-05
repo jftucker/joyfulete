@@ -1,6 +1,7 @@
 import React from "react";
+import Zones from "./Zones";
 
 const Home = (props) => {
-  return <h1>Home</h1>;
+  return <Zones></Zones>;
 };
 export default Home;
