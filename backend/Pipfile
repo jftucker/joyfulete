@@ -16,6 +16,7 @@ Pillow = "*"
 django-cors-headers = "*"
 gevent = "*"
 django-livesync = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 pylint = "*"

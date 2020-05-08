@@ -70,16 +70,17 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 
 # django-allauth config
 
-LOGIN_REDIRECT_URL = 'home'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 
-ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
+# LOGIN_REDIRECT_URL = 'home'
+
+# ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
 
 SITE_ID = 1
 
@@ -213,7 +214,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 DEFAULT_FROM_EMAIL = 'admin@joyfulete.com'
 
 # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
 

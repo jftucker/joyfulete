@@ -5,40 +5,40 @@ const Zones = () => {
     <div className="container">
       <div className="row">
         <div
-          className="border border-primary text-center rounded-left"
+          className="border border-primary text-center rounded-left d-table"
           style={{ width: "20%", height: "60px" }}
         >
-          Recovery
+          <span className="d-table-cell align-middle">Recovery</span>
         </div>
         <div
-          className="border border-success text-center"
+          className="border border-success text-center d-table"
           style={{ width: "25%", height: "60px" }}
         >
-          Z1
+          <span className="d-table-cell align-middle">Z1</span>
         </div>
         <div
-          className="border border-success text-center"
+          className="border border-success text-center d-table"
           style={{ width: "25%", height: "60px" }}
         >
-          Z2
+          <span className="d-table-cell align-middle">Z2</span>
         </div>
         <div
-          className="border border-warning text-center"
+          className="border border-warning text-center d-table"
           style={{ width: "15%", height: "60px" }}
         >
-          Z3
+          <span className="d-table-cell align-middle">Z3</span>
         </div>
         <div
-          className="border border-danger text-center"
+          className="border border-danger text-center d-table"
           style={{ width: "8%", height: "60px" }}
         >
-          Z4
+          <span className="d-table-cell align-middle">Z4</span>
         </div>
         <div
-          className="border border-danger text-center rounded-right"
+          className="border border-danger text-center rounded-right d-table"
           style={{ width: "7%", height: "60px" }}
         >
-          Z5
+          <span className="d-table-cell align-middle">Z5</span>
         </div>
       </div>
     </div>
