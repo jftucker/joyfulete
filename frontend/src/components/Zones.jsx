@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../context/userContext";
 
 const Zones = () => {
+  const currentUser = useContext(UserContext);
+  console.log(currentUser);
+
   return (
     <div className="container">
       <div className="row">

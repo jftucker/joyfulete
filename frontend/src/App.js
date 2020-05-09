@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import UserContext from "./context/userContext";
 import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import Logout from "./components/Logout";
@@ -15,13 +16,14 @@ import "./App.css";
 
 function App() {
   const [user, setUser] = useState({});
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     setUser(auth.getCurrentUser());
   }, []);
 
   return (
-    <React.Fragment>
+    <UserContext.Provider>
       <ToastContainer />
       <NavBar user={user} />
       <main className="container">
@@ -37,7 +39,7 @@ function App() {
           <Redirect to="/not-found" />
         </Switch>
       </main>
-    </React.Fragment>
+    </UserContext.Provider>
   );
 }
 

@@ -13,18 +13,19 @@ class CustomUser(AbstractUser):
         default=uuid.uuid4,
         editable=False
     )
-    athleteCategory = models.IntegerField(
-        choices=settings.ATHLETE_CATEGORY_CHOICES, blank=True, null=True)
-    isAerobicallyDeficient = models.BooleanField(default=True)
-    threshold_pace = models.IntegerField(blank=True, null=True)
-    hrResting = models.IntegerField(blank=True, null=True)
-    hrMax = models.IntegerField(blank=True, null=True)
-    hrAerobicThreshold = models.IntegerField(blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse('profile', args=[str(self.id)])
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, primary_key=True)
     profilePicture = models.ImageField(upload_to='profile_pics/', blank=True)
+    hrResting = models.IntegerField(blank=True, null=True)
+    hrMax = models.IntegerField(blank=True, null=True)
+    hrAerobicThreshold = models.IntegerField(blank=True, null=True)
+    hrLactateThreshold = models.IntegerField(blank=True, null=True)
+    athleteCategory = models.IntegerField(
+        choices=settings.ATHLETE_CATEGORY_CHOICES, blank=True, null=True)
+    isAerobicallyDeficient = models.BooleanField(default=True)

@@ -50,8 +50,21 @@ export function getCurrentUser() {
   }
 }
 
+export async function getCurrentUserProfile({ id }) {
+  const response = await http
+    .get(`${apiUrl}/users/${id}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+  return response;
+}
+
 export default {
   getCurrentUser,
+  getCurrentUserProfile,
   login,
   logout,
   register,

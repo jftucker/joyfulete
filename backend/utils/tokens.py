@@ -25,6 +25,10 @@ class MyTokenRefreshSerializer(TokenRefreshSerializer):
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
         token['isAerobicallyDeficient'] = user.isAerobicallyDeficient
+        token['hrResting'] = user.hrResting
+        token['hrMax'] = user.hrMax
+        token['hrAerobicThreshold'] = user.hrAerobicThreshold
+        token['hrLactateThreshold'] = user.hrLactateThreshold
         # ...
 
         return token
