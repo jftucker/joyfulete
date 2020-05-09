@@ -20,7 +20,7 @@ class CustomUser(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(
-        CustomUser, on_delete=models.CASCADE, primary_key=True)
+        CustomUser, on_delete=models.CASCADE, related_name='profile', primary_key=True)
     profilePicture = models.ImageField(upload_to='profile_pics/', blank=True)
     hrResting = models.IntegerField(blank=True, null=True)
     hrMax = models.IntegerField(blank=True, null=True)

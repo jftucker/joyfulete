@@ -16,14 +16,13 @@ import "./App.css";
 
 function App() {
   const [user, setUser] = useState({});
-  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     setUser(auth.getCurrentUser());
   }, []);
 
   return (
-    <UserContext.Provider>
+    <UserContext.Provider value={user}>
       <ToastContainer />
       <NavBar user={user} />
       <main className="container">

@@ -10,7 +10,11 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
-        token['isAerobicallyDeficient'] = user.isAerobicallyDeficient
+        token['isAerobicallyDeficient'] = user.profile.isAerobicallyDeficient
+        token['hrResting'] = user.profile.hrResting
+        token['hrMax'] = user.profile.hrMax
+        token['hrAerobicThreshold'] = user.profile.hrAerobicThreshold
+        token['hrLactateThreshold'] = user.profile.hrLactateThreshold
         # ...
 
         return token
@@ -24,11 +28,11 @@ class MyTokenRefreshSerializer(TokenRefreshSerializer):
         # Add custom claims
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
-        token['isAerobicallyDeficient'] = user.isAerobicallyDeficient
-        token['hrResting'] = user.hrResting
-        token['hrMax'] = user.hrMax
-        token['hrAerobicThreshold'] = user.hrAerobicThreshold
-        token['hrLactateThreshold'] = user.hrLactateThreshold
+        token['isAerobicallyDeficient'] = user.profile.isAerobicallyDeficient
+        token['hrResting'] = user.profile.hrResting
+        token['hrMax'] = user.profile.hrMax
+        token['hrAerobicThreshold'] = user.profile.hrAerobicThreshold
+        token['hrLactateThreshold'] = user.profile.hrLactateThreshold
         # ...
 
         return token
