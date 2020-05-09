@@ -2,7 +2,7 @@ import React from "react";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
 import Form from "./common/Form";
-import * as userService from "../services/userService";
+import auth from "../services/authService";
 
 class LoginForm extends Form {
   state = {
@@ -18,10 +18,12 @@ class LoginForm extends Form {
   doSubmit = async () => {
     try {
       const { data } = this.state;
-      const response = await userService.login(data.email, data.password);
-      if (response.status === 400) {
-        response.data.non_field_errors.map((item) => toast.error(item));
+      const response = await auth.login(data.email, data.password);
+      if (response.status === 401) {
+        toast.error(response.data.detail);
+        return;
       }
+      window.location = "/";
     } catch (ex) {}
   };
 
