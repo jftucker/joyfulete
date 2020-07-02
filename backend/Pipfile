@@ -17,6 +17,7 @@ django-cors-headers = "*"
 gevent = "*"
 django-livesync = "*"
 djangorestframework-simplejwt = "*"
+pandas = "*"
 
 [dev-packages]
 pylint = "*"

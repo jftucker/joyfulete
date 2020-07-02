@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
 ALLOWED_HOSTS = ['joyfulete.herokuapp.com',
-                 'localhost', '127.0.0.1', '0.0.0.0']
+                 'localhost', '127.0.0.1', '0.0.0.0', '10.0.0.146']
 
 # Determine environment, assume production
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
 
     # Local
+    'activities.apps.ActivitiesConfig',
     'api.apps.ApiConfig',
     'plans.apps.PlansConfig',
     'users.apps.UsersConfig',
