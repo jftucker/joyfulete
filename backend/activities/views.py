@@ -1,11 +1,7 @@
 from rest_framework import generics
 
 from django.contrib import messages
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from django.urls import reverse_lazy, reverse
 
 import pandas as pd
 from dateutil import parser
