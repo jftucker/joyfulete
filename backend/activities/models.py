@@ -59,4 +59,6 @@ class Activity(models.Model):
         verbose_name_plural = "Activities"
 
     def __str__(self):
+        if self.name is None:
+            return ""
         return self.name

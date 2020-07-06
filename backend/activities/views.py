@@ -58,8 +58,15 @@ RENAME_DICT = {
 
 
 class ActivityList(generics.ListCreateAPIView):
-    queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases
+        for the currently authenticated user.
+        """
+        user = self.request.user
+        return Activity.objects.filter(user=user).order_by('-date')
 
 
 class ActivityDetail(generics.RetrieveUpdateDestroyAPIView):
