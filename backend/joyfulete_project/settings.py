@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = ['joyfulete.herokuapp.com',
+ALLOWED_HOSTS = ['joyfulete.herokuapp.com', 'joyfulete-api.herokuapp.com', 'api.joyfulete.com',
                  'localhost', '127.0.0.1', '0.0.0.0', '10.0.0.146']
 
 # Determine environment, assume production
