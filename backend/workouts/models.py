@@ -1,9 +1,18 @@
 import uuid
-from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
 from plans.models import Day
+
+
+ZONE_CHOICES = [
+    (0, 'Recovery'),
+    (1, 'Zone 1'),
+    (2, 'Zone 2'),
+    (3, 'Zone 3'),
+    (4, 'Zone 4'),
+    (5, 'Zone 5'),
+]
 
 
 class Workout(models.Model):
@@ -12,10 +21,11 @@ class Workout(models.Model):
         default=uuid.uuid4,
         editable=False
     )
-    workout = models.ForeignKey(Day, on_delete=models.PROTECT, blank=True, null=True, related_name='workouts')
+    workout = models.ForeignKey(
+        Day, on_delete=models.PROTECT, blank=True, null=True, related_name='workouts')
     title = models.CharField(max_length=200)
     description = models.TextField()
-    zone = models.IntegerField(choices=settings.ZONE_CHOICES, default=0)
+    zone = models.IntegerField(choices=ZONE_CHOICES, default=0)
     completedDateTime = models.DateTimeField(blank=True, null=True)
     tss = models.IntegerField(blank=True, null=True)
     rpe = models.IntegerField(blank=True, null=True)

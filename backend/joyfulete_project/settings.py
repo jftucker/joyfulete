@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
 ALLOWED_HOSTS = ['joyfulete.herokuapp.com', 'joyfulete-api.herokuapp.com', 'api.joyfulete.com',
-                 'localhost', '127.0.0.1', '0.0.0.0', '10.0.0.146']
+                 'localhost', '127.0.0.1', '0.0.0.0', '10.0.0.13']
 
 # Determine environment, assume production
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')

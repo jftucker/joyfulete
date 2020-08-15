@@ -1,6 +1,11 @@
 import uuid
-from django.conf import settings
 from django.db import models
+
+
+ATHLETE_CATEGORY_CHOICES = [
+    (1, 'Category 1'),
+    (2, 'Category 2'),
+]
 
 
 class Plan(models.Model):
@@ -18,7 +23,7 @@ class MacroPlan(models.Model):
         editable=False
     )
     athleteCategory = models.IntegerField(
-        choices=settings.ATHLETE_CATEGORY_CHOICES, default=1)
+        choices=ATHLETE_CATEGORY_CHOICES, default=1)
     length = models.IntegerField(blank=True, null=True)
 
 
