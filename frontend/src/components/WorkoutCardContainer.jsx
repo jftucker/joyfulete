@@ -8,18 +8,21 @@ import { ItemTypes } from "../utils/Constants";
 import _ from "lodash";
 
 function WorkoutCardContainer({ id, date, workouts, week, setWeek }) {
-  const onDrop = (props) => {
-    if (props.dayId !== id) {
-      const newWeek = { ...week };
-      const toDay = _.find(newWeek.days, (obj) => obj.id === id);
-      const fromDay = _.find(newWeek.days, (obj) => obj.id === props.dayId);
+  const onDrop = props => {
+    const newWeek = { ...week };
+    const toDay = _.find(newWeek.days, obj => obj.id === id);
+    const fromDay = _.find(newWeek.days, obj => obj.id === props.dayId);
+
+    console.log(week);
+
+    if (props.dayId !== id && fromDay) {
       const newDays = newWeek.days.filter(
-        (item) => item.id !== props.dayId && item.id !== id
+        item => item.id !== props.dayId && item.id !== id
       );
-      const workout = _.find(fromDay.workouts, (obj) => obj.id === props.id);
+      const workout = _.find(fromDay.workouts, obj => obj.id === props.id);
 
       fromDay.workouts = fromDay.workouts.filter(
-        (workout) => workout.id !== props.id
+        workout => workout.id !== props.id
       );
       toDay.workouts = [...toDay.workouts, workout];
 
@@ -33,8 +36,8 @@ function WorkoutCardContainer({ id, date, workouts, week, setWeek }) {
   const [{ isOver }, drop] = useDrop({
     accept: ItemTypes.WORKOUT,
     drop: onDrop,
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
+    collect: monitor => ({
+      isOver: monitor.isOver(),
     }),
   });
 
@@ -43,13 +46,13 @@ function WorkoutCardContainer({ id, date, workouts, week, setWeek }) {
       <Card
         ref={drop}
         key={id}
-        className="text-bold mb-3"
-        text="dark"
-        variant="top"
-        border="dark"
+        className='text-bold mb-3'
+        text='dark'
+        variant='top'
+        border='dark'
         bg={isOver ? "light" : ""}
       >
-        <Card.Header as="h5" key={id + "header"} className="text-center mb-1">
+        <Card.Header as='h5' key={id + "header"} className='text-center mb-1'>
           <p>{dayOfWeek(date)}</p>
           <p>{date}</p>
         </Card.Header>
