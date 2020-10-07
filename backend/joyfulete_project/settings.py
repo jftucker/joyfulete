@@ -239,20 +239,6 @@ CORS_ORIGIN_REGEX_WHITELIST = [
     'http://127.0.0.1:3000',
 ]
 
-ATHLETE_CATEGORY_CHOICES = [
-    (1, 'Category 1'),
-    (2, 'Category 2'),
-]
-
-ZONE_CHOICES = [
-    (0, 'Recovery'),
-    (1, 'Zone 1'),
-    (2, 'Zone 2'),
-    (3, 'Zone 3'),
-    (4, 'Zone 4'),
-    (5, 'Zone 5'),
-]
-
 # Stripe
 
 STRIPE_TEST_PUBLISHABLE_KEY = os.environ.get('STRIPE_TEST_PUBLISHABLE_KEY')
