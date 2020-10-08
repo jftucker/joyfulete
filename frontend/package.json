@@ -13,6 +13,7 @@
     "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.19",
+    "node-forge": "0.10.0",
     "pm2": "^4.4.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
