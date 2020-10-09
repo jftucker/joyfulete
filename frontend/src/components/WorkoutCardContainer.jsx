@@ -4,35 +4,23 @@ import Workout from "./Workout";
 import Card from "react-bootstrap/Card";
 import zoneStyle from "../utils/zoneStyle";
 import dayOfWeek from "../utils/dayOfWeek";
+import { moveWorkout } from "../utils/workouts";
 import { ItemTypes } from "../utils/Constants";
 import _ from "lodash";
 
-function WorkoutCardContainer({ id, date, workouts, week, setWeek }) {
-  const onDrop = props => {
-    const newWeek = { ...week };
-    const toDay = _.find(newWeek.days, obj => obj.id === id);
-    const fromDay = _.find(newWeek.days, obj => obj.id === props.dayId);
+function WorkoutCardContainer(props) {
+  const onDrop = droppedProps => {
+    const toDay = _.find(props.week.days, obj => obj.id === props.id);
+    const fromDay = _.find(
+      props.week.days,
+      obj => obj.id === droppedProps.dayId
+    );
+    if (droppedProps.dayId !== props.id && fromDay)
+      moveWorkout(fromDay, toDay, props, droppedProps);
 
-    console.log(week);
-
-    if (props.dayId !== id && fromDay) {
-      const newDays = newWeek.days.filter(
-        item => item.id !== props.dayId && item.id !== id
-      );
-      const workout = _.find(fromDay.workouts, obj => obj.id === props.id);
-
-      fromDay.workouts = fromDay.workouts.filter(
-        workout => workout.id !== props.id
-      );
-      toDay.workouts = [...toDay.workouts, workout];
-
-      newWeek.days = [...newDays, toDay, fromDay].sort((a, b) =>
-        a.date > b.date ? 1 : -1
-      );
-
-      setWeek(newWeek);
-    }
+    console.log(droppedProps);
   };
+
   const [{ isOver }, drop] = useDrop({
     accept: ItemTypes.WORKOUT,
     drop: onDrop,
@@ -42,27 +30,31 @@ function WorkoutCardContainer({ id, date, workouts, week, setWeek }) {
   });
 
   return (
-    <Fragment key={id + "fragment"}>
+    <Fragment key={props.id + "fragment"}>
       <Card
         ref={drop}
-        key={id}
+        key={props.id}
         className='text-bold mb-3'
         text='dark'
         variant='top'
         border='dark'
         bg={isOver ? "light" : ""}
       >
-        <Card.Header as='h5' key={id + "header"} className='text-center mb-1'>
-          <p>{dayOfWeek(date)}</p>
-          <p>{date}</p>
+        <Card.Header
+          as='h5'
+          key={props.id + "header"}
+          className='text-center mb-1'
+        >
+          <p>{dayOfWeek(props.date)}</p>
+          <p>{props.date}</p>
         </Card.Header>
-        {workouts.map(({ id: workoutId, zone, title }) => (
+        {props.workouts.map(({ id: workoutId, zone, title }) => (
           <Workout
             key={workoutId}
             id={workoutId}
             zone={zoneStyle(zone)}
             title={title}
-            dayId={id}
+            dayId={props.id}
           />
         ))}
       </Card>
